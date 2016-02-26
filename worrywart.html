@@ -1,0 +1,263 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="author" href="https://www.refsmmat.com">
+    <title>Worrywart</title>
+
+    <!-- Tangle -->
+    <script type="text/javascript" src="Tangle/Tangle.js"></script>
+
+    <!-- TangleKit -->
+    <link rel="stylesheet" href="Tangle/TangleKit/TangleKit.css" type="text/css">
+    <script type="text/javascript" src="Tangle/TangleKit/mootools.js"></script>
+    <script type="text/javascript" src="Tangle/TangleKit/sprintf.js"></script>
+    <script type="text/javascript" src="Tangle/TangleKit/BVTouchable.js"></script>
+    <script type="text/javascript" src="Tangle/TangleKit/TangleKit.js"></script>
+
+    <script type="text/javascript" src="worrywart.js"></script>
+    <link rel="stylesheet" href="worrywart.css" type="text/css">
+  </head>
+  <body id="worrywart">
+    <h1>The Worrywart</h1>
+    <h2>What should you worry about?</h2>
+    <h3>by <a href="https://www.refsmmat.com">Alex Reinhart</a></h3>
+    <p>
+      Most people worry about the wrong things. We are paranoid about terrorism
+      despite it being millions of times more likely we will die in house fires
+      or car accidents. We fear strangers in dark alleys when we're more likely
+      to be attacked by spouses or friends.
+    </p>
+
+    <p>
+      The table below presents your annual risk of having various terrible
+      things happen to you, expressed in units of <a href="https://en.wikipedia.org/wiki/Micromort">micromorts</a>:
+      a one-in-a-million chance. So a 10 micromort probability represents a
+      10-in-a-million chance. <strong>Click or drag on the highlighted text</strong>&mdash;you
+      can change all the variables to more accurately represent you.
+    </p>
+
+    <p>
+      All data is based on United States mortality and crime data, and may
+      not be accurate for other countries. These are <em>averages only</em>&mdash;your
+      personal risk depends on many factors, like your health, where
+      you live, your job, and any risky behavior you might enjoy.
+    </p>
+    <h2>About you</h2>
+    <p>
+      I am a <span class="TKAdjustableNumber" data-var="age" data-min="0" data-max="115"></span>-year-old
+      <span class="Enum" data-var="gender"><span>man</span><span>woman</span></span>.
+      I have <span class="TKAdjustableNumber" data-var="children" data-min="0" data-max="20"></span> children age 12 or under.
+    </p>
+    <p>
+      Each week, I travel roughly
+    </p>
+    <table>
+      <tr>
+        <td>
+          <span class="TKAdjustableNumber" data-var="pedestrianMiles" data-min="0"></span> miles
+        </td>
+        <td>
+          by walking,
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span class="TKAdjustableNumber" data-var="carMiles" data-min="0"></span> miles
+        </td>
+        <td>
+          in a car,
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span class="TKAdjustableNumber" data-var="busMiles" data-min="0"></span> miles
+        </td>
+        <td>
+          by bus,
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span class="TKAdjustableNumber" data-var="motorcycleMiles" data-min="0"></span> miles
+        </td>
+        <td>
+          on a motorcycle,
+        </td>
+      </tr>
+      <tr>
+        <td>
+          and <span class="TKAdjustableNumber" data-var="subwayMiles" data-min="0"></span> miles
+        </td>
+        <td>
+          on a subway or metro.
+        </td>
+      </tr>
+    </table>
+    <p>
+      Each year, I take roughly
+      <span class="TKAdjustableNumber" data-var="flights" data-min="0"></span>
+      flights on commercial airplanes.
+    </p>
+    <h2>You should worry about:</h2>
+    <table id="results">
+      <tr>
+        <th>Cause</th>
+        <th>Micromorts</th>
+        <th>Details</th>
+      </tr>
+      <tr>
+        <td>Death, all causes</td>
+        <td><span data-var="mortalityMorts" data-format="%.0f"></span></td>
+        <td>
+          Sum of all causes of death. <span class="TKIf" data-var="children">
+            <strong>Consider:</strong> Your death or injury affects your children&mdash;if
+            you die, do you have enough savings to support them? Consider a life
+            insurance policy to benefit them in case of your death.
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>Car accidents</td>
+        <td><span data-var="carMorts" data-format="%.0f"></span></td>
+        <td>
+          Deaths in car accidents. 31% of these accidents involved alchohol.
+          Don't drink or text while driving.
+          <span class="TKIf" data-var="children">Make sure your kids have
+            <a href="http://www.safercar.gov/parents/index.htm">the right kind
+              of car seat.</a></span>
+        </td>
+      </tr>
+      <tr>
+        <td>Pedestrian accidents</td>
+        <td><span data-var="pedestrianMorts" data-format="%.0f"></span></td>
+        <td>
+          Pedestrian deaths when struck by vehicles.
+        </td>
+      </tr>
+      <tr>
+        <td>Bus accidents</td>
+        <td><span data-var="busMorts" data-format="%.0f"></span></td>
+      </tr>
+      <tr>
+        <td>Motorcycle accidents</td>
+        <td><span data-var="motorcycleMorts" data-format="%.0f"></span></td>
+      </tr>
+      <tr>
+        <td>Subway accidents</td>
+        <td><span data-var="subwayMorts" data-format="%.0f"></span></td>
+      </tr>
+      <tr>
+        <td>Fire</td>
+        <td><span data-var="fireMorts" data-format="%.1f"></span></td>
+        <td>
+          Deaths in fires. Smoke alarms decrease your risk by 50%&mdash;install
+          them if you don't have them, or go check their batteries if you do.
+          Half of all residential fires start while cooking, so follow
+          <a href="http://www.nfpa.org/safety-information/for-consumers/causes/cooking/safety-messages-about-cooking">basic kitchen safety tips</a>
+          and consider a kitchen fire extinguisher.
+      </tr>
+      <tr>
+        <td>Heart disease</td>
+        <td><span data-var="heartMorts" data-format="%.0f"></span></td>
+      </tr>
+      <tr>
+        <td>Homicide</td>
+        <td><span data-var="homicideMorts" data-format="%.0f"></span></td>
+      </tr>
+      <tr>
+        <td>Suicide</td>
+        <td><span data-var="suicideMorts" data-format="%.0f"></span></td>
+      </tr>
+      <tr>
+        <td>Cancer</td>
+        <td><span data-var="cancerMorts" data-format="%.0f"></span></td>
+      </tr>
+      <tr>
+        <td>Drug overdose</td>
+        <td><span data-var="overdoseMorts" data-format="%.0f"></span></td>
+        <td>
+          Includes illegal drugs and prescription opiate (oxycodone, Vicodin,
+          Percocet, etc.) abuse.
+        </td>
+      </tr>
+      <tr>
+        <td>Stroke</td>
+        <td><span data-var="strokeMorts" data-format="%.0f"></span></td>
+      </tr>
+      <tr>
+        <td>Terrorist attack</td>
+        <td><span data-var="terrorMorts" data-format="%.10f"></span></td>
+        <td>
+          In the United States, there have only been 80 deaths from terrorist
+          attacks been 2004 and 2013.
+        </td>
+      </tr>
+      <tr>
+        <td>Rape or sexual assault by an acquaintance</td>
+        <td><span data-var="acqRapeMorts" data-format="%.0f"></span></td>
+        <td>
+          Includes those committed by partners, relatives, and acquaintances.
+        </td>
+      </tr>
+      <tr>
+        <td>Rape or sexual assault by a stranger</td>
+        <td><span data-var="strangerRapeMorts" data-format="%.0f"></span></td>
+      </tr>
+    </table>
+
+    <h2>Sources</h2>
+    <p>
+      All data was collected from academic studies or government sources, and
+      reflects the best estimates I could find. If any of these sources are
+      out of date or inaccurate, please <a href="https://www.refsmmat.com">contact
+        me</a> to let me know.
+    </p>
+    <dl>
+      <dt>Disease mortality data</dt>
+      <dd>
+        Centers for Disease Control and Prevention,
+        "<a href="http://www.cdc.gov/nchs/hus/contents2014.htm">Health, United States, 2014</a>".
+      </dd>
+
+      <dt>Transportation death rates</dt>
+      <dd>
+        Ian Savage, "<a href="http://faculty.wcas.northwestern.edu/~ipsavage/436.pdf">Comparing the fatality risks in United States transportation across modes and over time</a>", <em>Research in Transportation Economics</em> (2013), vol 43, p. 9&ndash;22.<br>
+        National Highway Traffic Safety Administration,
+        "<a href="http://www-nrd.nhtsa.dot.gov/Pubs/810968.pdf">National Pedestrian Crash Report</a>", 2008.
+      </dd>
+
+      <dt>Crime rates</dt>
+      <dd>
+        Bureau of Justice Statistics, <a href="http://www.bjs.gov/index.cfm?ty=dcdetail&iid=245">National Crime Victimization Survey</a>,
+        <a href="http://www.bjs.gov/developer/ncvs/index.cfm">2014 data</a>.
+        The NCVS uses a representative sample of Americans and asks about their
+        experiences of crime, rather than relying on crimes reported to police,
+        making it more reliable for crimes that are often undercounted, like
+        rape. Some figures are still unreliable because of small samples and
+        insufficient data, and there may still be underreporting..
+      </dd>
+
+      <dt>Fire deaths</dt>
+      <dd>
+        Federal Emergency Management Agency,
+        "<a href="https://www.usfa.fema.gov/downloads/xls/statistics/death_injury_data_sets.xlsx">Fire death and injury rates (2004-2013)"</a>
+      </dd>
+        
+    </dl>
+
+    <footer>
+      <p>
+        <a href="http://creativecommons.org/licenses/by/4.0/">
+          <img
+             alt="Creative Commons License" style="border-width:0"
+             src="https://i.creativecommons.org/l/by/4.0/80x15.png"></a><br>
+        The Worrywart by <a href="https://www.refsmmat.com/">Alex Reinhart</a>
+        is licensed under a
+        <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+      </p>
+      <p>The code is <a href="https://github.com/capnrefsmmat/worrywart">open-source</a>.</p>
+    </footer>
+  </body>
+</html>

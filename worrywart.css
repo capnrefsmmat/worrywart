@@ -1,0 +1,53 @@
+/** Page layout **/
+
+body {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 720px;
+    background-color: #fdfdfd;
+    color: #111;
+    text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+    text-decoration: none;
+    font-family: 'Source Sans Pro', 'Helvetica', sans-serif;
+    font-weight: normal;
+}
+
+p, li, td, th, dd, dt {
+    font-family: 'Source Sans Pro', 'Helvetica', sans-serif;
+    line-height: 155%;
+}
+
+footer {
+    text-align: center;
+    font-size: 80%;
+    margin: 0;
+    border-top: 1px solid #CCC;
+    padding: 0.5em 15%;
+}
+
+/** Adjustable fields **/
+
+.Enum {
+    color: #46f;
+    border-bottom: 1px dashed #46f;
+    cursor: pointer;
+}
+
+/** Results table **/
+
+.source {
+    font-size: 90%;
+    color: #777;
+}
+
+#results th {
+    text-align: left;
+}
+
+#results td {
+    vertical-align: top;
+}
